@@ -48,7 +48,7 @@ pipeline {
                 }
             }
 }
-		stage ('Copies the final package to the remote repository') {
+/*		stage ('Copies the final package to the remote repository') {
 
             steps {
                 withMaven(maven : 'MAVEN-HOME') {
@@ -56,5 +56,6 @@ pipeline {
                 }
             }
 }
+*/
 }
 }
