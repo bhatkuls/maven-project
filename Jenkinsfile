@@ -48,14 +48,12 @@ pipeline {
                 }
             }
 }
-/*		stage ('Copies the final package to the remote repository') {
-
-            steps {
-                withMaven(maven : 'MAVEN-HOME') {
-                    sh 'mvn clean deploy'
-                }
-            }
+stage {
+	steps {
+      sshagent (credentials: ['deploy-dev']) {
+      sh 'scp -o StrictHostKeyChecking=no **/*.war ec2-user@172.31.41.54:/var/lib/tomcat/webapps'
+	}
+  }
 }
-*/
 }
 }
