@@ -48,13 +48,14 @@ pipeline {
                 }
             }
 }
-stage {
-	steps {
-      sshagent (credentials: ['9c3b3ee9-ffad-4c42-aef7-f12fb3f82231']) {
-      sh 'scp -o StrictHostKeyChecking=no **/*.war ec2-user@172.31.41.54:/var/lib/tomcat/webapps'
+		stage ('connecting Tomcat with ec2-user') {
+	
+			steps {
+			sshagent (credentials: ['9c3b3ee9-ffad-4c42-aef7-f12fb3f82231']) {
+				sh 'scp -o StrictHostKeyChecking=no **/*.war ec2-user@172.31.41.54:/var/lib/tomcat/webapps'
+			}
+		
+		}
 	}
-	}	
-  }
-}
 }
 }
