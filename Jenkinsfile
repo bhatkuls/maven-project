@@ -11,7 +11,7 @@ pipeline {
 		stage ('CValidates that the project is correct') {
 
             steps {
-                withMaven(maven : 'LocalMaven') {
+                withMaven(maven : 'MAVEN-HOME') {
                     sh 'mvn validate'
                 }
             }
@@ -19,7 +19,7 @@ pipeline {
         stage ('Compile Stage') {
 
             steps {
-                withMaven(maven : 'LocalMaven') {
+                withMaven(maven : 'MAVEN-HOME') {
                     sh 'mvn clean compile'
                 }
             }
@@ -27,7 +27,7 @@ pipeline {
 		stage ('Runs the tests against the compiled source code') {
 
             steps {
-                withMaven(maven : 'LocalMaven') {
+                withMaven(maven : 'MAVEN-HOME') {
                     sh 'mvn clean test'
                 }
             }
@@ -35,7 +35,7 @@ pipeline {
 		stage ('Packs the compiled code in its distributable format') {
 
             steps {
-                withMaven(maven : 'LocalMaven') {
+                withMaven(maven : 'MAVEN-HOME') {
                     sh 'mvn clean package'
                 }
             }
@@ -43,7 +43,7 @@ pipeline {
 		stage ('Install the package into the local repository') {
 
             steps {
-                withMaven(maven : 'LocalMaven') {
+                withMaven(maven : 'MAVEN-HOME') {
                     sh 'mvn clean install'
                 }
             }
@@ -51,7 +51,7 @@ pipeline {
 		stage ('Copies the final package to the remote repository') {
 
             steps {
-                withMaven(maven : 'LocalMaven') {
+                withMaven(maven : 'MAVEN-HOME') {
                     sh 'mvn clean deploy'
                 }
             }
