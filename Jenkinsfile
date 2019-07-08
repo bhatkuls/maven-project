@@ -4,7 +4,7 @@ pipeline {
 
     stages {
         stage('SCM Checkout'){
-          git 'https://github.com/prakashk0301/maven-project'
+          git 'https://github.com/bhatkuls/maven-project'
         }
   }
     {
@@ -17,7 +17,7 @@ pipeline {
             }
 }	
         stage ('Compile Stage') {
-		/*agent{label 'maven'}*/
+			{agent : label 'maven'}
             steps {
                 withMaven(maven : 'MAVEN-HOME') {
                     sh 'mvn clean compile'
